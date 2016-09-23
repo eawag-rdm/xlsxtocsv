@@ -1,6 +1,8 @@
 import datetime as dt
 import openpyxl as op
+import argparse
 import os.path
+import sys
 import re
 
 import csv
@@ -17,6 +19,12 @@ class RFC4180(csv.Dialect):
     skipinitialspace = False
     stric = True
 
+def parseargs():
+    pa = argparse.ArgumentParser(description=
+            'Exports multiple CSV files from an Excel *.xlsx Workbook')
+    pa.add_argument('file', metavar='EXCELFILE')
+    args = pa.parse_args(sys.argv[1:])
+    return vars(args)
 
 def stringify(data):
     transmap = {
@@ -43,7 +51,7 @@ def write_csv(data, outfile):
 
 def main():
     csv.register_dialect('RFC4180', RFC4180)
-    xlsxfile = 'Lutherntotal.xlsx'
+    xlsxfile = parseargs()['file']
     out_prefix = os.path.splitext(xlsxfile)[0]
     wb = op.load_workbook(xlsxfile, data_only=True)
     for sn in wb.sheetnames:
