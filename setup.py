@@ -9,6 +9,8 @@ setup(
     url='https://github.com/eawag-rdm/xlsxtocsv.git',
     license='GNU Affero General Public License',
     description='Export from a .xlsx file to multiple .csv files',
-    install_requires=['openpyxl']
-    entry_points=['console_script': 'xlsxtocsv.xlsxtocsv:main']
+    install_requires=['openpyxl'],
+    entry_points={
+        'console_scripts': ['xlsxtocsv.xlsxtocsv:main']
+    }
 )
