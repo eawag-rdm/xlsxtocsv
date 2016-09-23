@@ -15,7 +15,7 @@ class RFC4180(csv.Dialect):
     escapechar = None
     lineterminator = '\r\n'
     quotechar = '"'
-    quoting = csv.QUOTE_NONNUMERIC
+    quoting = csv.QUOTE_MINIMAL
     skipinitialspace = False
     stric = True
 
