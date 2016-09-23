@@ -11,6 +11,6 @@ setup(
     description='Export from a .xlsx file to multiple .csv files',
     install_requires=['openpyxl'],
     entry_points={
-        'console_scripts': ['xlsxtocsv.xlsxtocsv:main']
+        'console_scripts': ['xlsxtocsv=xlsxtocsv.xlsxtocsv:main']
     }
 )
