@@ -8,7 +8,7 @@ The script writes [RFC4180](https://tools.ietf.org/html/rfc4180) conform files. 
 
 ##usage:
 
-	testpyxl.py [-h] EXCELFILE
+	xlsxtocsv.py [-h] EXCELFILE
 
 	Exports multiple CSV files from an Excel *.xlsx Workbook
 
