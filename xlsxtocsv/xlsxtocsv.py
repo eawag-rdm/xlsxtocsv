@@ -1,20 +1,24 @@
+# -*- coding: utf-8 -*-
+
+from __future__ import absolute_import, division, print_function, unicode_literals
 import datetime as dt
 import openpyxl as op
 import argparse
 import os.path
 import sys
 import re
-
 import csv
+
+__metaclass__ = type
 
 class RFC4180(csv.Dialect):
     def __init__(self):
         csv.Dialect.__init__(self)
-    delimiter = ','
+    delimiter = b','
     doublequote = True
     escapechar = None
-    lineterminator = '\r\n'
-    quotechar = '"'
+    lineterminator = b'\r\n'
+    quotechar = b'"'
     quoting = csv.QUOTE_MINIMAL
     skipinitialspace = False
     stric = True
@@ -39,8 +43,8 @@ def stringify(data):
     for l in data:
         nl = [transmap[f] if f in transmap else f for f in l]
         nl = [f.encode('utf-8')
-              if isinstance(f, basestring) else f for f in nl]
-        newdata.append([str(f) if not isinstance(f, basestring)
+              if isinstance(f, str) else f for f in nl]
+        newdata.append([str(f) if not isinstance(f, str)
                         else f for f in nl])
     return newdata
 
