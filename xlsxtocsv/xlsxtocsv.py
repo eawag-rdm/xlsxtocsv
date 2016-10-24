@@ -32,7 +32,7 @@ def parseargs():
 
 def _stringify(dat):
     if not isinstance(dat, basestring):
-        return str(dat)
+        return str(dat).encode('utf-8')
     else:
         return dat.encode('utf-8')
 
