@@ -42,7 +42,7 @@ def _stringify(dat):
 def _transmap(dat):
     transmap = {
         # empty cells are going to be empty strings
-        None: 'NA',
+        None: '',
         # workaround for bug in openpyxl
         # https://bitbucket.org/openpyxl/openpyxl/issues/674/ 
         dt.datetime(1899, 12, 30, 0, 0): dt.time(0, 0),
