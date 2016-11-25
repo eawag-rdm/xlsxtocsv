@@ -26,7 +26,10 @@ class RFC4180(csv.Dialect):
 def parseargs():
     pa = argparse.ArgumentParser(description=
             'Exports multiple CSV files from an Excel *.xlsx Workbook')
-    pa.add_argument('file', metavar='EXCELFILE')
+    pa.add_argument('file', metavar='EXCELFILE', help='The Excel file to export')
+    pa.add_argument('-o', metavar='OUTPUTDIRECTORY',
+                    help='The output directory, default is the current directory',
+                    default=os.getcwd())
     args = pa.parse_args(sys.argv[1:])
     return vars(args)
 
@@ -70,9 +73,11 @@ def main():
     csv.register_dialect(u'RFC4180', RFC4180)
     xlsxfile = parseargs()['file']
     out_prefix = os.path.splitext(os.path.basename(xlsxfile))[0]
+    out_dir = parseargs()['o']
     wb = op.load_workbook(xlsxfile, data_only=True)
     for sn in wb.sheetnames:
-        outfile = out_prefix + '_' + re.sub(r'\s+', '_', sn) + '.csv'
+        outfile = os.path.join(out_dir, out_prefix + '_' +
+                               re.sub(r'\s+', '_', sn) + '.csv')
         data = []
         sheet = wb.get_sheet_by_name(sn)
         for l in sheet.values:
