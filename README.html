@@ -1,0 +1,37 @@
+<h1 id="xslxtocsv">xslxtocsv</h1>
+<p>This is a quick and dirty script to export one MS Office Excel workbook in OOXML format (*.xlsx) to multiple CSV files, one per Worksheet. The names of output files are derived from the basename of the input file and from the names of the Worksheets. The script writes <a href="https://tools.ietf.org/html/rfc4180">RFC4180</a> conform files. Empty cells are replaced with empty strings.</p>
+<hr />
+<h2 id="usage">Usage:</h2>
+<pre><code>xlsxtocsv.py [-h] [-o OUTPUTDIRECTORY] EXCELFILE
+
+Exports multiple CSV files from an Excel *.xlsx Workbook
+
+positional arguments:
+  EXCELFILE           The Excel file to export
+
+optional arguments:
+  -h, --help          show this help message and exit
+  -o OUTPUTDIRECTORY  The output directory, default is the current directory.</code></pre>
+<h2 id="notes-for-windows-users">Notes for Windows users</h2>
+<h3 id="installation">Installation</h3>
+<ul>
+<li>Download the installer <a href="https://github.com/eawag-rdm/xlsxtocsv/raw/master/Output/xlsxtocsv_setup.exe">xlsxtocsv_setup.exe</a></li>
+<li>Double-click it.</li>
+<li>Click &quot;Install&quot;. Note: No administrative rights are required on your Windows computer to install xlsxtocsv.</li>
+<li>Click &quot;Finish&quot; and allow your computer to reboot.</li>
+</ul>
+<h3 id="usage-1">Usage</h3>
+<ul>
+<li>This program can be controlled by commands that are communicated by typing them on the keyboard.</li>
+<li>To do that, open the &quot;Powershell&quot; application by typing &quot;powershell&quot; into the search-box at the bottom of the Start menu, and then click on the respective icon (see Fig.).</li>
+<li>Observe that a window appers in which you can type text (see Fig.)</li>
+<li>Use the <code>cd</code> command to change to the directory in which the file that you want to convert is located, e.g.<br />
+<code>cd c:\users\vonwalha\myexcelfiles</code> (see Fig.)</li>
+<li>Use the <code>ls</code> command to list the contents of the directory (see Fig.)</li>
+<li>Assumning the name of file you want to convert is <code>my_great_workbook.xlsx</code>, type<br />
+<code>xlsxtocsv my_great_workbook.xlsx</code></li>
+<li>Allow a couple of seconds before the <a href="https://en.wikipedia.org/wiki/Command-line_interface#Command_prompt"><em>command prompt</em></a> appears again, indicating that the program is finished.</li>
+<li>type <code>ls</code> to check that you now have CSV files in the directory, one for each Worksheet (see Fig.)</li>
+<li>type <code>xlsxtocsv -h</code> to get help for more options of the program.</li>
+<li>in case you want</li>
+</ul>

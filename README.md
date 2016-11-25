@@ -9,7 +9,7 @@ files. Empty cells are replaced with empty strings.
 
 ----------------------
 
-##usage:
+## Usage:
 
     xlsxtocsv.py [-h] [-o OUTPUTDIRECTORY] EXCELFILE
 
@@ -20,5 +20,30 @@ files. Empty cells are replaced with empty strings.
 
     optional arguments:
       -h, --help          show this help message and exit
-       -o OUTPUTDIRECTORY  The output directory, default is the current directory.
+      -o OUTPUTDIRECTORY  The output directory, default is the current directory.
 
+## Notes for Windows users
+
+### Installation
+
++ Download the installer [xlsxtocsv_setup.exe](https://github.com/eawag-rdm/xlsxtocsv/raw/master/Output/xlsxtocsv_setup.exe)
++ Double-click it.
++ Click "Install". Note: No administrative rights are required on your Windows computer to install xlsxtocsv.
++ Click "Finish" and allow your computer to reboot.
+
+### Usage
+
++ This program can be controlled by commands that are communicated by typing them on the keyboard.
++ To do that, open the "Powershell" application by typing "powershell"
+  into the search-box at the bottom of the Start menu, and then click on
+  the respective icon (see Fig.).
++ Observe that a window appers in which you can type text (see Fig.)
++ Use the `cd` command to change to the directory in which the file that you want to convert is located, e.g.  
+    `cd c:\users\vonwalha\myexcelfiles` (see Fig.)
++ Use the `ls` command to list the contents of the directory (see Fig.)
++ Assumning the name of file you want to convert is `my_great_workbook.xlsx`, type    
+    `xlsxtocsv my_great_workbook.xlsx`
++ Allow a couple of seconds before the [*command prompt*](https://en.wikipedia.org/wiki/Command-line_interface#Command_prompt) appears again, indicating that the program is finished.
++ type `ls` to check that you now have CSV files in the directory, one for each Worksheet (see Fig.)
++ type `xlsxtocsv -h` to get help for more options of the program.
++ in case you want 
