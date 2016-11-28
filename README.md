@@ -44,9 +44,9 @@ files. Empty cells are replaced with empty strings.
 + Assumning the name of the file you want to convert is `my_great_workbook.xlsx`, type    
     `xlsxtocsv my_great_workbook.xlsx`
 + Allow a couple of seconds before the [*command prompt*](https://en.wikipedia.org/wiki/Command-line_interface#Command_prompt) appears again, indicating that the program is finished.
-+ type `dir` to check that you now have CSV files in the directory, one for each Worksheet (see Figure 2).
-+ type `xlsxtocsv -h` to get help for more options of the program.
-+ in case you want learn more about communicating with your computer
++ Type `dir` to check that you now have CSV files in the directory, one for each Worksheet (see Figure 2).
++ Type `xlsxtocsv -h` to get help for more options of the program.
++ In case you want learn more about communicating with your computer
   by means of typed "commands", [here
   is a very brief tutorial](http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html).
 
