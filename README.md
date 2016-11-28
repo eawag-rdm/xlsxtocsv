@@ -52,5 +52,6 @@ files. Empty cells are replaced with empty strings.
 
 ![Figure 1: invoke powershell.\label{powershell}](./html/powershell.png) <br />
 Figure 1: invoke powershell
+
 ![Figure 2: type commands\label{commands}](./html/commands.png)
 Figure 2: type commands
