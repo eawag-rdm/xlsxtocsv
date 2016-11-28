@@ -51,5 +51,6 @@ files. Empty cells are replaced with empty strings.
   is a very brief tutorial](http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html).
 
 ![Figure 1: invoke powershell.\label{powershell}](./html/powershell.png)
-
+Figure 1: invoke powershell
 ![Figure 2: type commands\label{commands}](./html/commands.png)
+Figure 2: type commands
