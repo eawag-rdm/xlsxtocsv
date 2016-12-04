@@ -84,7 +84,8 @@ def main():
                                       initialdir=home) as f:
             xlsxfile = f.name
         if out_dir is None:
-            out_dir = tkFileDialog.askdirectory(initialdir=home)
+            out_dir = tkFileDialog.askdirectory(title='Choose output directory',
+                                                initialdir=home)
         root.destroy()
     if out_dir is None:
         out_dir = os.getcwd()
