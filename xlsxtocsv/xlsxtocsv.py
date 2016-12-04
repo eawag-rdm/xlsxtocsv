@@ -29,9 +29,12 @@ def parseargs():
     pa = argparse.ArgumentParser(description=
             'Exports multiple CSV files from an Excel *.xlsx Workbook')
     pa.add_argument('-f', metavar='EXCELFILE',
-                    help='The Excel file to export')
+                    help='The Excel file to export. ' +
+                    'If omitted, a graphical file chooser will be used.')
     pa.add_argument('-o', metavar='OUTPUTDIRECTORY',
-                    help='The output directory, default is the current directory')
+                    help='The output directory. Default is the current ' +
+                    'directory if EXCELFILE was given, otherwise a ' +
+                    'file chooser will be used as well.')
     args = pa.parse_args(sys.argv[1:])
     return vars(args)
 
@@ -79,15 +82,21 @@ def main():
     if xlsxfile is None:
         root = Tk()
         root.withdraw()
-        with tkFileDialog.askopenfile(title='Choose file to convert',
+        f = tkFileDialog.askopenfile(title='Choose file to convert',
                                       filetypes=[('xlsx', '*.xlsx')],
-                                      initialdir=home) as f:
+                                      initialdir=home)
+        if f:
             xlsxfile = f.name
+            f.close()
+        else:
+            sys.exit()
         if out_dir is None:
             out_dir = tkFileDialog.askdirectory(title='Choose output directory',
                                                 initialdir=home)
+            if not out_dir:
+                sys.exit()
         root.destroy()
-    if out_dir is None:
+    if not out_dir:
         out_dir = os.getcwd()
     out_prefix = os.path.splitext(os.path.basename(xlsxfile))[0]
     wb = op.load_workbook(xlsxfile, data_only=True)
