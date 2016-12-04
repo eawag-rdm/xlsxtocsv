@@ -40,8 +40,10 @@ Source: ".\xlsxtocsv\dist\xlsxtocsv.exe"; DestDir: "{localappdata}"; Flags: igno
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: PATH; ValueData: "{olddata};{localappdata}"; \
 Check: NeedsAddPath('{localappdata}')
 
-[Code]
+[Icons]
+Name: "{userstartmenu}\xlsxtocsv"; Filename: "{localappdata}\xlsxtocsv.exe"; WorkingDir: "{userdesktop}"
 
+[Code]
 function NeedsAddPath(Param: string): boolean;
 var
   OrigPath: string;
