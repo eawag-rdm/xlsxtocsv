@@ -2,6 +2,8 @@
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 import datetime as dt
+from Tkinter import Tk
+import tkFileDialog
 import openpyxl as op
 import argparse
 import os.path
@@ -26,10 +28,10 @@ class RFC4180(csv.Dialect):
 def parseargs():
     pa = argparse.ArgumentParser(description=
             'Exports multiple CSV files from an Excel *.xlsx Workbook')
-    pa.add_argument('file', metavar='EXCELFILE', help='The Excel file to export')
+    pa.add_argument('-f', metavar='EXCELFILE',
+                    help='The Excel file to export')
     pa.add_argument('-o', metavar='OUTPUTDIRECTORY',
-                    help='The output directory, default is the current directory',
-                    default=os.getcwd())
+                    help='The output directory, default is the current directory')
     args = pa.parse_args(sys.argv[1:])
     return vars(args)
 
@@ -71,9 +73,22 @@ def write_csv(data, outfile):
 
 def main():
     csv.register_dialect(u'RFC4180', RFC4180)
-    xlsxfile = parseargs()['file']
-    out_prefix = os.path.splitext(os.path.basename(xlsxfile))[0]
+    home = os.path.expanduser('~')
+    xlsxfile = parseargs()['f']
     out_dir = parseargs()['o']
+    if xlsxfile is None:
+        root = Tk()
+        root.withdraw()
+        with tkFileDialog.askopenfile(title='Choose file to convert',
+                                      filetypes=[('xlsx', '*.xlsx')],
+                                      initialdir=home) as f:
+            xlsxfile = f.name
+        if out_dir is None:
+            out_dir = tkFileDialog.askdirectory(initialdir=home)
+        root.destroy()
+    if out_dir is None:
+        out_dir = os.getcwd()
+    out_prefix = os.path.splitext(os.path.basename(xlsxfile))[0]
     wb = op.load_workbook(xlsxfile, data_only=True)
     for sn in wb.sheetnames:
         outfile = os.path.join(out_dir, out_prefix + '_' +
