@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='xlsxtocsv',
-    version='1.0.1',
+    version='1.2.0',
     author='Harald von Waldow',
     author_email='harald.vonwaldow@eawag.ch',
     packages=['xlsxtocsv'],
