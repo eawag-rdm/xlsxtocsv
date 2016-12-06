@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "xlsxtocsv"
-#define MyAppVersion "1.1"
+#define MyAppVersion "1.2"
 #define MyAppPublisher "Harald von Waldow <harald.vonwaldow@eawag.ch>"
 #define MyAppURL "https://github.com/eawag-rdm/xlsxtocsv"
 #define MyAppExeName "xlsxtocsv.exe"
@@ -21,6 +21,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 CreateAppDir=no
 OutputBaseFilename=xlsxtocsv_setup
+OutputDir=WindowsInstaller
 Compression=lzma
 SolidCompression=yes
 AlwaysRestart=yes
@@ -34,6 +35,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
 Source: ".\xlsxtocsv\dist\xlsxtocsv.exe"; DestDir: "{localappdata}"; Flags: ignoreversion
+Source: "xlsxtocsv.ico"; DestDir: "{localappdata}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
@@ -41,7 +43,8 @@ Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: PATH; ValueDa
 Check: NeedsAddPath('{localappdata}')
 
 [Icons]
-Name: "{userstartmenu}\xlsxtocsv"; Filename: "{localappdata}\xlsxtocsv.exe"; WorkingDir: "{userdesktop}"
+Name: "{userstartmenu}\xlsxtocsv"; Filename: "{localappdata}\xlsxtocsv.exe"; WorkingDir: "{userdesktop}"; \
+Comment: "xlsx to csv converter"; IconFilename: "{localappdata}\xlsxtocsv.ico"
 
 [Code]
 function NeedsAddPath(Param: string): boolean;
