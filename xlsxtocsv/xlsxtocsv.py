@@ -10,20 +10,9 @@ import os.path
 import sys
 import re
 import csv
+import rfc4180
 
 __metaclass__ = type
-
-class RFC4180(csv.Dialect):
-    def __init__(self):
-        csv.Dialect.__init__(self)
-    delimiter = b','
-    doublequote = True
-    escapechar = None
-    lineterminator = b'\r\n'
-    quotechar = b'"'
-    quoting = csv.QUOTE_MINIMAL
-    skipinitialspace = False
-    stric = True
 
 def parseargs():
     pa = argparse.ArgumentParser(description=
@@ -75,7 +64,7 @@ def write_csv(data, outfile):
         writer.writerows(data)
 
 def main(xlsxfile, out_dir):
-    csv.register_dialect(u'RFC4180', RFC4180)
+    rfc4180.RFC4180()
     out_prefix = os.path.splitext(os.path.basename(xlsxfile))[0]
     wb = op.load_workbook(xlsxfile, data_only=True)
     for sn in wb.sheetnames:
