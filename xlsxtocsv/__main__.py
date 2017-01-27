@@ -1,2 +1,2 @@
-from .xlsxtocsv import main
-main()
+from .xlsxtocsv import main_gui
+main_gui()

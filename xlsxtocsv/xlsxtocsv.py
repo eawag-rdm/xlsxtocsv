@@ -10,7 +10,7 @@ import os.path
 import sys
 import re
 import csv
-import rfc4180
+from xlsxtocsv import rfc4180
 
 __metaclass__ = type
 
