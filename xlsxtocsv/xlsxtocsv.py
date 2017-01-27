@@ -74,8 +74,20 @@ def write_csv(data, outfile):
         writer = csv.writer(fout, dialect='RFC4180')
         writer.writerows(data)
 
-def main():
+def main(xlsxfile, out_dir):
     csv.register_dialect(u'RFC4180', RFC4180)
+    out_prefix = os.path.splitext(os.path.basename(xlsxfile))[0]
+    wb = op.load_workbook(xlsxfile, data_only=True)
+    for sn in wb.sheetnames:
+        outfile = os.path.join(out_dir, out_prefix + '_' +
+                               re.sub(r'\s+', '_', sn) + '.csv')
+        data = []
+        sheet = wb.get_sheet_by_name(sn)
+        for l in sheet.values:
+            data.append(transform(l))
+        write_csv(data, outfile)
+
+def main_gui():
     home = os.path.expanduser('~')
     xlsxfile = parseargs()['f']
     out_dir = parseargs()['o']
@@ -98,18 +110,7 @@ def main():
         root.destroy()
     if not out_dir:
         out_dir = os.getcwd()
-    out_prefix = os.path.splitext(os.path.basename(xlsxfile))[0]
-    wb = op.load_workbook(xlsxfile, data_only=True)
-    for sn in wb.sheetnames:
-        outfile = os.path.join(out_dir, out_prefix + '_' +
-                               re.sub(r'\s+', '_', sn) + '.csv')
-        data = []
-        sheet = wb.get_sheet_by_name(sn)
-        for l in sheet.values:
-            data.append(transform(l))
-        write_csv(data, outfile)
-
-
+    main(xlsxfile, out_dir)
+    
 if __name__ == '__main__':
-    main()
-
+    main_gui()
