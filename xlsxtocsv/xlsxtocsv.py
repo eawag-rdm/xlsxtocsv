@@ -63,11 +63,12 @@ def write_csv(data, outfile):
         writer = csv.writer(fout, dialect='RFC4180')
         writer.writerows(data)
 
-def main(xlsxfile, out_dir):
+def main(xlsxfile, out_dir, sheets=None):
     rfc4180.RFC4180()
     out_prefix = os.path.splitext(os.path.basename(xlsxfile))[0]
     wb = op.load_workbook(xlsxfile, data_only=True)
-    for sn in wb.sheetnames:
+    sheetnames = sheets or wb.sheetnames
+    for sn in sheetnames
         outfile = os.path.join(out_dir, out_prefix + '_' +
                                re.sub(r'\s+', '_', sn) + '.csv')
         data = []
