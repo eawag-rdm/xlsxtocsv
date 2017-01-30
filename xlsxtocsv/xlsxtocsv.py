@@ -72,7 +72,11 @@ def main(xlsxfile, out_dir, sheets=None):
         outfile = os.path.join(out_dir, out_prefix + '_' +
                                re.sub(r'\s+', '_', sn) + '.csv')
         data = []
-        sheet = wb.get_sheet_by_name(sn)
+        try:
+            sheet = wb.get_sheet_by_name(sn)
+        except KeyError as e:
+            print(e.message)
+            continue
         for l in sheet.values:
             data.append(transform(l))
         write_csv(data, outfile)
