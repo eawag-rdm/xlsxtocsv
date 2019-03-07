@@ -2,8 +2,14 @@
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 import datetime as dt
-from Tkinter import Tk
-import tkFileDialog
+try:
+    from Tkinter import Tk
+except ImportError:
+    from tkinter import Tk
+try:
+    import tkFileDialog
+except ImportError:
+    from tkinter import filedialog as tkFileDialog
 import openpyxl as op
 import argparse
 import os.path
