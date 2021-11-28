@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, print_function, unicode_literals
 import datetime as dt
-from Tkinter import Tk
-import tkFileDialog
+from tkinter import Tk
+import tkinter.filedialog
 import openpyxl as op
 import argparse
 import os.path
@@ -16,11 +15,11 @@ __metaclass__ = type
 class RFC4180(csv.Dialect):
     def __init__(self):
         csv.Dialect.__init__(self)
-    delimiter = b','
+    delimiter = ','
     doublequote = True
     escapechar = None
-    lineterminator = b'\r\n'
-    quotechar = b'"'
+    lineterminator = '\r\n'
+    quotechar = '"'
     quoting = csv.QUOTE_MINIMAL
     skipinitialspace = False
     stric = True
@@ -39,10 +38,10 @@ def parseargs():
     return vars(args)
 
 def _stringify(dat):
-    if not isinstance(dat, basestring):
-        return str(dat).encode('utf-8')
+    if not isinstance(dat, str):
+        return str(dat) #.encode('utf-8')
     else:
-        return dat.encode('utf-8')
+        return dat #.encode('utf-8')
 
 def _transmap(dat):
     transmap = {
@@ -70,19 +69,19 @@ def transform(l):
     return l
     
 def write_csv(data, outfile):
-    with open(outfile, 'wb') as fout:
+    with open(outfile, 'w') as fout:
         writer = csv.writer(fout, dialect='RFC4180')
         writer.writerows(data)
 
 def main():
-    csv.register_dialect(u'RFC4180', RFC4180)
+    csv.register_dialect('RFC4180', RFC4180)
     home = os.path.expanduser('~')
     xlsxfile = parseargs()['f']
     out_dir = parseargs()['o']
     if xlsxfile is None:
         root = Tk()
         root.withdraw()
-        f = tkFileDialog.askopenfile(title='Choose file to convert',
+        f = tkinter.filedialog.askopenfile(title='Choose file to convert',
                                       filetypes=[('xlsx', '*.xlsx')],
                                       initialdir=home)
         if f:
@@ -91,7 +90,7 @@ def main():
         else:
             sys.exit()
         if out_dir is None:
-            out_dir = tkFileDialog.askdirectory(title='Choose output directory',
+            out_dir = tkinter.filedialog.askdirectory(title='Choose output directory',
                                                 initialdir=home)
             if not out_dir:
                 sys.exit()
