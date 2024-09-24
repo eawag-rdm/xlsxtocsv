@@ -8,16 +8,24 @@ writes [RFC4180](https://tools.ietf.org/html/rfc4180) conform
 files. Empty cells are replaced with empty strings.
 
 ----------------------
-## Unix / Linux / OSX
 
-### Installation
+## Installation
 
-`pip install git+https://github.com/eawag-rdm/xlsxtocsv.git`
+> Python is required!
 
-+ You have to have [Git](https://git-scm.com/downloads) installed.
-+ You have to have [Python 3](https://www.python.org/downloads/) installed.
+### With Git
+```bash
+pip install git+https://github.com/eawag-rdm/xlsxtocsv.git
+```
 
-### Usage:
+### Without Git
+Download and unzip the files from **GitHub**. Open the unzipped folder in a terminal and type:
+
+```bash
+pip install .
+```
+
+## Usage:
     xlsxtocsv.py [-h] [-f EXCELFILE] [-o OUTPUTDIRECTORY]
     
     Exports multiple CSV files from an Excel *.xlsx Workbook
@@ -30,25 +38,3 @@ files. Empty cells are replaced with empty strings.
                           if EXCELFILE was given, otherwise a file chooser will be
                           used as well.
   
-## Windows
-
-**ATTENTION: The Windows binary is not supported or updated
-  anymore. Maybe it works, maybe not. If you need to use xlsxtocsv
-  with a Windows computer, use the Windows Subsystem for Linux
-  ([https://docs.microsoft.com/en-us/windows/wsl/install](https://docs.microsoft.com/en-us/windows/wsl/install)).**
-
-### Installation
-
-+ Download the installer [xlsxtocsv_setup.exe](https://github.com/eawag-rdm/xlsxtocsv/raw/master/WindowsInstaller/xlsxtocsv_setup.exe)
-+ Double-click it.
-+ Click "Install". Accept default options by clicking "Next" and "Install". Note: No administrative rights are required on your Windows computer to install xlsxtocsv.
-+ Click "Finish" and allow your computer to reboot.
-
-### Usage
-
-+ After the installation there will be an entry *xlsxtocsv* in your Start Menu.
-+ Click it.
-+ Choose xlsx file to convert.
-+ Choose directory where to put the output.
-+ Observe how the csv file(s) appear in the output directory you chose.
-
